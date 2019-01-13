@@ -1,7 +1,7 @@
 {
   "name": "vis-sms-spam",
   "version": "1.0.0",
-  "main": "app/index.js",
+  "main": "app/draw.js",
   "repository": "git@github.com:awmleer/vis-sms-spam.git",
   "author": "awmleer <awmleer@sparker.xyz>",
   "license": "MIT",

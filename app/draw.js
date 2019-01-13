@@ -1,11 +1,11 @@
 
-fetch('./data/all.json').then(async (res) => {
-  const data = await res.json()
-  draw(data)
-})
+// fetch('./data/all.json').then(async (res) => {
+//   const data = await res.json()
+//   draw(data)
+// })
 
-function draw(rawData) {
-  var dom = document.getElementById("container");
+function draw(time, rawData) {
+  var dom = document.getElementById(`draw-area-${time}`);
   var myChart = echarts.init(dom);
   var app = {};
   option = null;
