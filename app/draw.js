@@ -28,38 +28,27 @@ function draw(time, rawData, type) {
   type = parseInt(type);
   for (var i = 0; i < 100; i++) {
     for (var j = 0; j < 100; j++) {
-      data.push([i, j, rawData[i][j][type], rawData[i][j][0],
+      data.push([i, j, type === 6 ? grade(rawData[i][j]) : rawData[i][j][type], rawData[i][j][0],
         rawData[i][j][1],rawData[i][j][2],rawData[i][j][3],rawData[i][j][4],
       ]) // rawData_class1
     }
   }
 
-  function grade(value) {
-    if (value <= 0) {
+  function grade(detail) {
+    const max = Math.max(detail[0], detail[1], detail[2], detail[3], detail[4]);
+
+    if (max === 0)
       return 0;
-    }
-    if (value <= 50) {
+    else if (max === detail[0])
       return 1;
-    }
-    if (value <= 100) {
+    else if (max === detail[1])
       return 2;
-    }
-    if (value <= 200) {
+    else if (max === detail[2])
       return 3;
-    }
-    if (value <= 500) {
+    else if (max === detail[3])
       return 4;
-    }
-    if (value <= 1000) {
+    else
       return 5;
-    }
-    if (value <= 2000) {
-      return 6;
-    }
-    if (value <= 4000) {
-      return 7;
-    }
-    return 8;
   }
 
   function renderItem(params, api) {
@@ -107,7 +96,22 @@ function draw(time, rawData, type) {
       inverse: true,
       top: 10,
       left: 10,
-      pieces: [
+      pieces: type === 6 ?
+      [{
+        value: 0, color: COLORS[0], label: '无'
+      }, {
+        value: 1, color: COLORS[1], label: '色情广告'
+      }, {
+        value: 2, color: COLORS[2], label: '发票办证'
+      }, {
+        value: 3, color: COLORS[3], label: '银行相关'
+      }, {
+        value: 4, color: COLORS[4], label: '房产交易'
+      }, {
+        value: 5, color: COLORS[5], label: '其他'
+      }]
+      :
+      [
         {lte: 0, color: COLORS[0]},
         {gt: 0, lte: 50, color: COLORS[1]},
         {gt: 50, lte: 100, color: COLORS[2]},
@@ -141,7 +145,7 @@ function draw(time, rawData, type) {
         // tooltip won't be showed when only 1 dimenion is displayed
         dimensions: ['x', 'y', '总数', '色情广告', '发票办证', '银行相关', '房产交易', '其他'],
         encode: {
-          tooltip: type === 5 ? [2, 3, 4, 5, 6, 7] : [2]
+          tooltip: type === 5 ? [2, 3, 4, 5, 6, 7] : (type === 6 ? [3, 4, 5, 6, 7] : [2])
         },
         data: data
       }

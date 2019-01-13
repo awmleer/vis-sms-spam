@@ -53,6 +53,7 @@ const App = function() {
           &nbsp;&nbsp;类型：
           <select onChange={handleTypeChange} value={type}>
             <option value="5" selected={"5" == type}>所有</option>
+            <option value="6" selected={"6" == type}>主要类型</option>
             <option value="0" selected={"0" == type}>色情广告</option>
             <option value="1" selected={"1" == type}>发票办证</option>
             <option value="2" selected={"2" == type}>银行相关</option>
