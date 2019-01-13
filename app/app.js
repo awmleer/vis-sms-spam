@@ -3,7 +3,6 @@ const timeRange = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
 const App = function() {
   const [time, setTime] = React.useState(0)
   const [autoPlay, setAutoPlay] = React.useState(false)
-  // const intervalRef = React.useRef(null)
 
   React.useEffect(() => {
     fetch('./data/all.json').then(async (res) => {
