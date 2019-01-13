@@ -1,9 +1,3 @@
-
-// fetch('./data/all.json').then(async (res) => {
-//   const data = await res.json()
-//   draw(data)
-// })
-
 function draw(time, rawData) {
   var dom = document.getElementById(`draw-area-${time}`);
   var myChart = echarts.init(dom);
@@ -41,25 +35,25 @@ function draw(time, rawData) {
     if (value <= 0) {
       return 0;
     }
-    if (value <= 100) {
+    if (value <= 50) {
       return 1;
     }
-    if (value <= 500) {
+    if (value <= 100) {
       return 2;
     }
-    if (value <= 1000) {
+    if (value <= 200) {
       return 3;
     }
-    if (value <= 2000) {
+    if (value <= 500) {
       return 4;
     }
-    if (value <= 4000) {
+    if (value <= 1000) {
       return 5;
     }
-    if (value <= 8000) {
+    if (value <= 2000) {
       return 6;
     }
-    if (value <= 16000) {
+    if (value <= 4000) {
       return 7;
     }
     return 8;

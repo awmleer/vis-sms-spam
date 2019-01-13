@@ -7,14 +7,13 @@ const App = function() {
       const data = await res.json()
       for (const time of timeRange) {
         setTimeout(() => {
-          draw(time, data)
+          draw(time, data[time])
         }, time*3000)
       }
     })
   }, [])
 
   function handleSliderChange(e) {
-    console.log(e.target.value)
     setTime(e.target.value)
   }
 
