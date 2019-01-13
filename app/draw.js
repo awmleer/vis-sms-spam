@@ -1,4 +1,4 @@
-function draw(time, rawData) {
+function draw(time, rawData, type) {
   var dom = document.getElementById(`draw-area-${time}`);
   var myChart = echarts.init(dom);
   var app = {};
@@ -25,9 +25,12 @@ function draw(time, rawData) {
   var gapSize=0;
 
   var data = [];
+  type = parseInt(type);
   for (var i = 0; i < 100; i++) {
     for (var j = 0; j < 100; j++) {
-      data.push([i, j, rawData[i][j]]) // rawData_class1
+      data.push([i, j, rawData[i][j][type], rawData[i][j][0],
+        rawData[i][j][1],rawData[i][j][2],rawData[i][j][3],rawData[i][j][4],
+      ]) // rawData_class1
     }
   }
 
@@ -135,8 +138,10 @@ function draw(time, rawData) {
             color: 'yellow'
           }
         },
+        // tooltip won't be showed when only 1 dimenion is displayed
+        dimensions: ['x', 'y', '总数', '色情广告', '发票办证', '银行相关', '房产交易', '其他'],
         encode: {
-          tooltip: 2
+          tooltip: type === 5 ? [2, 3, 4, 5, 6, 7] : [2]
         },
         data: data
       }
@@ -156,7 +161,7 @@ function draw(time, rawData) {
           'featureType': 'land',
           'elementType': 'all',
           'stylers': {
-            'color': '#f3f3f3'
+            'color': '#fefefe'
           }
         }, {
           'featureType': 'railway',
@@ -248,5 +253,9 @@ function draw(time, rawData) {
   };
   if (option && typeof option === "object") {
     myChart.setOption(option, true);
+
+    const map = myChart.getModel().getComponent('bmap').getBMap();
+    map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT}));    
+    map.addControl(new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_RIGHT}));    
   }
 }
