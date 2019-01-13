@@ -27,7 +27,7 @@ function draw(time, rawData) {
   var data = [];
   for (var i = 0; i < 100; i++) {
     for (var j = 0; j < 100; j++) {
-      data.push([i, j, grade(rawData[i][j])]) // rawData_class1
+      data.push([i, j, rawData[i][j]]) // rawData_class1
     }
   }
 
@@ -104,25 +104,17 @@ function draw(time, rawData) {
       inverse: true,
       top: 10,
       left: 10,
-      pieces: [{
-        value: 0, color: COLORS[0]
-      }, {
-        value: 1, color: COLORS[1]
-      }, {
-        value: 2, color: COLORS[2]
-      }, {
-        value: 3, color: COLORS[3]
-      }, {
-        value: 4, color: COLORS[4]
-      }, {
-        value: 5, color: COLORS[5]
-      }, {
-        value: 6, color: COLORS[6]
-      }, {
-        value: 7, color: COLORS[7]
-      }, {
-        value: 8, color: COLORS[8]
-      }],
+      pieces: [
+        {lte: 0, color: COLORS[0]},
+        {gt: 0, lte: 50, color: COLORS[1]},
+        {gt: 50, lte: 100, color: COLORS[2]},
+        {gt: 100, lte: 200, color: COLORS[3]},
+        {gt: 200, lte: 500, color: COLORS[4]},
+        {gt: 500, lte: 1000, color: COLORS[5]},
+        {gt: 1000, lte: 2000, color: COLORS[6]},
+        {gt: 2000, lte: 4000, color: COLORS[7]},
+        {gt: 4000, color: COLORS[7]},
+    ],
       borderColor: '#ccc',
       borderWidth: 2,
       backgroundColor: '#eee',
