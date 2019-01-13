@@ -11,20 +11,22 @@ const latGridSize = (latExtent[1] - latExtent[0]) / 100
 
 const ret = []
 
-for (let i = 0; i < 100; i++) {
-  ret[i] = []
-  for (let j = 0; j < 100; j++) {
-    ret[i][j] = 0
+for (let h = 0; h < 24; h++) {
+  ret[h] = []
+  for (let i = 0; i < 100; i++) {
+    ret[h][i] = []
+    for (let j = 0; j < 100; j++) {
+      ret[h][i][j] = 0
+    }
   }
 }
-
 
 
 readdir(__dirname+'/data').then(async (files) => {
   for (const file of files) {
     await handleCsvFile(file)
   }
-  console.log(ret)
+  console.log(ret.length)
 })
 
 
@@ -38,10 +40,11 @@ function handleCsvFile(fileName) {
         record = parser.read()
         if (!record) break
         const [md5, content, phone, conntime, recitime, lng, lat] = record
+        const hour = (new Date(parseInt(recitime))).getHours()
         if (md5 === 'md5') continue
         const [x, y] = calPosition(parseFloat(lng), parseFloat(lat))
         if (x < 0 || x >= 100 || y < 0 || y >= 100) continue
-        ret[x][y]++
+        ret[hour][x][y]++
       }
     })
     parser.on('end', function(){
