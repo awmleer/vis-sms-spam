@@ -15,6 +15,15 @@ function draw(time, rawData, type) {
     "#661800",
     "#330c00",
   ];
+
+  var COLORS2 = [
+    '#ffffff',
+    '#0074D9',
+    '#7FDBFF',
+    '#39CCCC',
+    '#3D9970',
+    '#2ECC40'
+  ];
   var latExtent = [39.5, 40.6];
   var lngExtent = [115.9, 116.8];
   var cellCount = [100, 100];
@@ -98,17 +107,17 @@ function draw(time, rawData, type) {
       left: 10,
       pieces: type === 6 ?
       [{
-        value: 0, color: COLORS[0], label: '无'
+        value: 0, color: COLORS2[0], label: '无'
       }, {
-        value: 1, color: COLORS[1], label: '色情广告'
+        value: 1, color: COLORS2[1], label: '色情广告'
       }, {
-        value: 2, color: COLORS[2], label: '发票办证'
+        value: 2, color: COLORS2[2], label: '发票办证'
       }, {
-        value: 3, color: COLORS[3], label: '银行相关'
+        value: 3, color: COLORS2[3], label: '银行相关'
       }, {
-        value: 4, color: COLORS[4], label: '房产交易'
+        value: 4, color: COLORS2[4], label: '房产交易'
       }, {
-        value: 5, color: COLORS[5], label: '其他'
+        value: 5, color: COLORS2[5], label: '其他'
       }]
       :
       [
