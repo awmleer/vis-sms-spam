@@ -6,7 +6,7 @@ const App = function() {
   const [autoPlay, setAutoPlay] = React.useState(false)
 
   React.useEffect(() => {
-    fetch('./data/newdata2.json').then(async (res) => {
+    fetch('./data/newdata3.json').then(async (res) => {
       const data = await res.json()
       for (const time of timeRange) {
         setTimeout(() => {
