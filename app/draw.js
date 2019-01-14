@@ -14,6 +14,8 @@ function draw(time, rawData, type) {
     "#992600",
     "#661800",
     "#330c00",
+    "#000e33",
+    "#000000",
   ];
 
   var COLORS2 = [
@@ -129,7 +131,9 @@ function draw(time, rawData, type) {
         {gt: 500, lte: 1000, color: COLORS[5]},
         {gt: 1000, lte: 2000, color: COLORS[6]},
         {gt: 2000, lte: 4000, color: COLORS[7]},
-        {gt: 4000, color: COLORS[7]},
+        {gt: 4000, lte: 10000, color: COLORS[7]},
+        {gt: 10000, lte: 15000, color: COLORS[7]},
+        {gt: 15000, color: COLORS[8]},
     ],
       borderColor: '#ccc',
       borderWidth: 2,
@@ -222,7 +226,7 @@ function draw(time, rawData, type) {
           'featureType': 'subway',
           'elementType': 'all',
           'stylers': {
-            'visibility': 'off'
+            // 'visibility': 'off'
           }
         }, {
           'featureType': 'manmade',

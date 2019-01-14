@@ -10,7 +10,10 @@ const App = function() {
       const data = await res.json()
       for (const time of timeRange) {
         setTimeout(() => {
-          draw(time, data[time], type)
+          if (time === 24)
+            draw(24, data[24], type);
+          else
+            draw(time, data[(time + 16) % 24], type)
         }, time*2000)
       }
     })
