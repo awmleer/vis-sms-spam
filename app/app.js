@@ -2,8 +2,12 @@ const timeRange = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
 
 const App = function() {
   const [time, setTime] = React.useState(0)
-  const [type, setType] = React.useState(5)
+  const query = Qs.parse(location.query, {
+    ignoreQueryPrefix: true
+  })
+  const [type, setType] = React.useState(query.type || 5)
   const [autoPlay, setAutoPlay] = React.useState(false)
+
 
   React.useEffect(() => {
     fetch('./data/newdata3.json').then(async (res) => {
@@ -39,7 +43,7 @@ const App = function() {
   }
 
   function handleTypeChange(e) {
-    setType(e.target.value);
+    location.replace(`${location.pathname}?type=${e.target.value}`)
   }
 
   return (
