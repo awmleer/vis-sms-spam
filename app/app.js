@@ -20,7 +20,7 @@ const Spinner = function (props) {
 const App = function() {
   const [loadingProgress, setLoadingProgress] = React.useState(0)
   const [time, setTime] = React.useState(0)
-  const query = Qs.parse(location.query, {
+  const query = Qs.parse(location.search, {
     ignoreQueryPrefix: true
   })
   const [type, setType] = React.useState(query.type || 5)
