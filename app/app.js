@@ -1,6 +1,24 @@
 const timeRange = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 
+const Spinner = function (props) {
+  return (
+    <div className="spinner-container">
+      <div className="spinner">
+        <div className="rect1"/>
+        <div className="rect2"/>
+        <div className="rect3"/>
+        <div className="rect4"/>
+        <div className="rect5"/>
+      </div>
+      <div className="progress">
+        {props.current} / {props.total}
+      </div>
+    </div>
+  )
+}
+
 const App = function() {
+  const [loadingProgress, setLoadingProgress] = React.useState(0)
   const [time, setTime] = React.useState(0)
   const query = Qs.parse(location.query, {
     ignoreQueryPrefix: true
@@ -14,11 +32,17 @@ const App = function() {
       const data = await res.json()
       for (const time of timeRange) {
         setTimeout(() => {
+          setLoadingProgress(time + 1)
+          if (time === timeRange[timeRange.length - 1]) {
+            setTimeout(() => {
+              setLoadingProgress(time + 2)
+            }, 1500)
+          }
           if (time === 24)
             draw(24, data[24], type);
           else
             draw(time, data[(time + 16) % 24], type)
-        }, time*2000)
+        }, time*1500)
       }
     })
   }, [type])
@@ -48,6 +72,9 @@ const App = function() {
 
   return (
     <div>
+      {loadingProgress <= timeRange.length && (
+        <Spinner total={timeRange.length} current={loadingProgress}/>
+      )}
       <div id="draw-area">
         {timeRange.map((t) => (
           <div id={`draw-area-${t}`} key={t} className="draw-area" style={{zIndex: t==time?100:1}} />
