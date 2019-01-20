@@ -21,7 +21,6 @@
 \usepackage[linesnumbered,lined,ruled,vlined,commentsnumbered]{algorithm2e}
 
 
-
 \fancyhf{}
 \lhead{信息可视化}
 \rhead{伪基站数据可视化}
@@ -80,12 +79,39 @@
 上色，从而可以让我们对北京地区垃圾短信的分布有一个直观上的了解。除此之外，我们还可以利用将鼠标移动到每个小方格上的方法，查看
 该方格内各类垃圾短信的具体数量，从而得以了解各类垃圾短信的主要类型。
 
+
+
+\begin{flushleft}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=\linewidth]{pic1.png}
+		\caption{不同地区垃圾短信数量}
+\end{figure}
+\end{flushleft}
+	
+
 而为了能够了解垃圾短信在时间上的分布规律，我们提供了按照小时查看我们的可视化结果的功能。用户可以通过选择其要查看的具体小时，或者
 使用自动播放功能来对不同时段垃圾短信的发送情况有一个具体的了解。
+
+\begin{flushleft}
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width=\linewidth]{pic3.png}
+			\caption{按类型和时间查看}
+	\end{figure}
+\end{flushleft}
 
 为了打击垃圾短信，我们需要有针对性地根据不同的垃圾短信类型选择不同的对策。我们同样是通过可视化的方法，根据每个地区主要的垃圾短信的
 类型为每个小方格标记上不同的颜色，从而得以让我们对不同地区的主要垃圾短信类型有一个更为直观的理解，从而得以针对不同地区制定
 更为有效的治理策略。此外，用户还可以通过选择不同时间查看或是自动播放的功能，来查看不同时段不同种类的垃圾短信的分布规律。
+
+\begin{flushleft}
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width=\linewidth]{pic2.png}
+			\caption{不同地区主要垃圾短信类型}
+	\end{figure}
+\end{flushleft}
 
 \section{案例展示}
 
@@ -99,25 +125,96 @@
 	发送量同样远大于城北地区，因而我们需要重点关注
 	城南地区的伪基站。
 
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{pic4.png}
+				\caption{北京总体垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
 	接下来我们可以放大地图，我们可以发现，在朝阳区的垃圾短信的分布相较于其他地区十分密集，且发送量较大。
 	同样我们可以看出，在朝阳地区，在人口密集处的亦庄以及经济不发达地区如黑庄户乡，垃圾短信的数量相较于其他地区同样
 	也较多。
 
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{pic5.png}
+				\caption{朝阳地区垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
 	此外，我们还可以发现，在交通沿线之处，垃圾短信的活动也较为猖獗。
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{pic6.png}
+				\caption{交通干线垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
 
 	而接下来，我们从上免的几张对比图中我们可以看出，伪基站的工作可以说是有很大的时间上的规律的。
 	从上面几张对比图我们可以看到，在早上7点的时候伪基站的数量开始增多，然后10:00之时达到顶峰，而从18:00之后又开始
 	逐步减少，最终在凌晨十分活动基本停止。
 
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{7.png}
+				\caption{7:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{10.png}
+				\caption{10:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{18.png}
+				\caption{18:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{23.png}
+				\caption{23:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
 
 	\item \textbf{请尝试在问题1的基础上进一步分析伪基站发送不同类型垃圾短信的时空分布规律。}
 
 	我们在判别垃圾短信的类型之上，我们采用了简单的关键词匹配的方法进行操作。例如，我们可以利用
 	银行、信用卡、额度等来关键词来识别银行相关的诈骗短信。而从我们的实验结果上来看，我们简单的关键词匹配可以说是能够
-	准确地为TODO的垃圾短信进行分类。
+	准确地为超过95\%的垃圾短信进行分类。
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{pic7.png}
+				\caption{垃圾短信类型整体统计}
+		\end{figure}
+	\end{flushleft}
 
 	从上图中我们可以非常直观地看出，若是以种类进行分类的情况下，发票办证类得了垃圾短信的数量可以说是远远超出其他类型的
 	垃圾短信的。而第二多的垃圾短信类型则是银行相关类的垃圾短信，其次是色情广告以及房产交易类的垃圾短信。
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{full.png}
+				\caption{地区主体垃圾短信统计}
+		\end{figure}
+	\end{flushleft}
 
 	接下来我们来看看北京地区各个区域的主要垃圾短信类型。从上图中我们可以看见，浅蓝色的格子可以说是覆盖了绝大多数的
 	北京城区，所以从上图中我们可以发现，对于绝大多说的伪基站来说，其发送的最主要的垃圾短信类型还是发票办证相关的信息。
@@ -132,6 +229,39 @@
 	其大约于夜晚18:00之后开始大量出现，且在此一时段其发送量大大超过了其他类型的垃圾短信。随后其发送量逐渐减少，并在灵成基本消失。
 	此外，其发送的地方同样集中于人口较多之处。
 
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{2-7.png}
+				\caption{7:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{2-11.png}
+				\caption{11:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{2-18.png}
+				\caption{18:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\linewidth]{2-20.png}
+				\caption{20:00 时垃圾短信分布}
+		\end{figure}
+	\end{flushleft}
+
+	
 
 	\item \textbf{请结合以上两题中得到的伪基站行为模式，向执法人员提出打击整治伪基站的有效建议和方案，并结合数据分析结果进行说明。}
 	
