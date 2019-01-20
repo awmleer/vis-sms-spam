@@ -15,11 +15,11 @@ const COLORS = [
 
 const COLORS2 = [
   '#ffffff',
-  '#0074D9',
-  '#7FDBFF',
-  '#39CCCC',
-  '#3D9970',
-  '#2ECC40'
+  '#7f6db9',
+  '#88b55d',
+  '#6a98cc',
+  '#cf5685',
+  '#6ab5b1'
 ]
 
 function draw(time, rawData, type) {
