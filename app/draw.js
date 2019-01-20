@@ -278,8 +278,11 @@ function draw(time, rawData, type) {
 
 
 function drawDoughnutChart(data) {
+  if (window.rightChart) {
+    window.rightChart.destroy()
+  }
   const ctx = 'draw-area-right'
-  const myChart = new Chart(ctx,{
+  window.rightChart = new Chart(ctx,{
     type: 'doughnut',
     data: {
       labels: ['色情广告', '发票办证', '银行相关', '房产交易', '其他'],
