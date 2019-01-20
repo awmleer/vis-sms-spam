@@ -1,4 +1,6 @@
 const timeRange = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+//FIXME
+// const timeRange = [0, 1]
 
 const Spinner = function (props) {
   return (
@@ -59,6 +61,12 @@ const App = function() {
     }
   }, [autoPlay])
 
+  React.useEffect(() => {
+    const canvas = document.getElementById('draw-area-right')
+    const context = canvas.getContext('2d')
+    context.clearRect(0, 0, canvas.width, canvas.height)
+  }, [time])
+
   function handleSliderChange(e) {
     setTime(e.target.value)
   }
@@ -68,6 +76,10 @@ const App = function() {
 
   function handleTypeChange(e) {
     location.replace(`${location.pathname}?type=${e.target.value}`)
+  }
+
+  function handleMapClick(event) {
+    console.log(event)
   }
 
   return (

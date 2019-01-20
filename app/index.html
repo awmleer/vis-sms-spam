@@ -7,6 +7,22 @@
 <body style="height: 100%; margin: 0">
 
 <style>
+  #container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+  }
+  #app {
+    flex: auto;
+    height: 100%;
+  }
+  #right {
+    flex: none;
+    /*width: 200px;*/
+    height: 100%;
+    padding: 20px;
+  }
+
   #draw-area {
     width: 100%;
     height: calc(100vh - 50px);
@@ -128,9 +144,15 @@
          -webkit-transform: scaleY(1.0);
        }
   }
+
 </style>
 
-<div id="app"></div>
+<div id="container">
+  <div id="app"></div>
+  <div id="right">
+    <canvas id="draw-area-right" width="400" height="600"></canvas>
+  </div>
+</div>
 
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
@@ -141,6 +163,7 @@
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script src="https://unpkg.com/qs@6.6.0/dist/qs.js"></script>
 <script src="https://unpkg.com/react@16.7.0-alpha.2/umd/react.production.min.js" crossorigin></script>

@@ -1,44 +1,43 @@
-function draw(time, rawData, type) {
-  var dom = document.getElementById(`draw-area-${time}`);
-  var myChart = echarts.init(dom);
-  var app = {};
-  option = null;
-  var COLORS = [
-    "#ffffff",
-    "#ffd9cc",
-    "#ffb399",
-    "#ff8c66",
-    "#ff6333",
-    "#ff3c00",
-    "#cc2c00",
-    "#992600",
-    "#661800",
-    "#330c00",
-    "#000e33",
-    "#000000",
-  ];
+const COLORS = [
+  '#ffffff',
+  '#ffd9cc',
+  '#ffb399',
+  '#ff8c66',
+  '#ff6333',
+  '#ff3c00',
+  '#cc2c00',
+  '#992600',
+  '#661800',
+  '#330c00',
+  '#000e33',
+  '#000000',
+]
 
-  var COLORS2 = [
-    '#ffffff',
-    '#0074D9',
-    '#7FDBFF',
-    '#39CCCC',
-    '#3D9970',
-    '#2ECC40'
-  ];
-  var latExtent = [39.5, 40.6];
-  var lngExtent = [115.9, 116.8];
-  var cellCount = [100, 100];
-  var cellSizeCoord = [
+const COLORS2 = [
+  '#ffffff',
+  '#0074D9',
+  '#7FDBFF',
+  '#39CCCC',
+  '#3D9970',
+  '#2ECC40'
+]
+
+function draw(time, rawData, type) {
+  const dom = document.getElementById(`draw-area-${time}`)
+  const myChart = echarts.init(dom)
+
+  const latExtent = [39.5, 40.6]
+  const lngExtent = [115.9, 116.8]
+  const cellCount = [100, 100]
+  const cellSizeCoord = [
     (latExtent[1] - latExtent[0]) / cellCount[0],
     (lngExtent[1] - lngExtent[0]) / cellCount[1]
-  ];
-  var gapSize=0;
+  ]
 
-  var data = [];
+  const data = []
   type = parseInt(type);
-  for (var i = 0; i < 100; i++) {
-    for (var j = 0; j < 100; j++) {
+  for (let i = 0; i < 100; i++) {
+    for (let j = 0; j < 100; j++) {
       data.push([i, j, type === 6 ? grade(rawData[i][j]) : rawData[i][j][type], rawData[i][j][0],
         rawData[i][j][1],rawData[i][j][2],rawData[i][j][3],rawData[i][j][4],
       ]) // rawData_class1
@@ -63,15 +62,10 @@ function draw(time, rawData, type) {
   }
 
   function renderItem(params, api) {
-    var context = params.context;
-    var lngIndex = api.value(0);
-    var latIndex = api.value(1);
-    var coordLeftTop = [
-      +(lngExtent[0] + lngIndex * cellSizeCoord[0]).toFixed(6),
-      +(latExtent[0] + latIndex * cellSizeCoord[1]).toFixed(6)
-    ];
-    var pointLeftTop = getCoord(params, api, lngIndex, latIndex);
-    var pointRightBottom = getCoord(params, api, lngIndex + 1, latIndex + 1);
+    const lngIndex = api.value(0)
+    const latIndex = api.value(1)
+    const pointLeftTop = getCoord(params, api, lngIndex, latIndex)
+    const pointRightBottom = getCoord(params, api, lngIndex + 1, latIndex + 1)
 
     return {
       type: 'rect',
@@ -89,8 +83,8 @@ function draw(time, rawData, type) {
   }
 
   function getCoord(params, api, lngIndex, latIndex) {
-    var coords = params.context.coords || (params.context.coords = []);
-    var key = lngIndex + '-' + latIndex;
+    const coords = params.context.coords || (params.context.coords = [])
+    const key = lngIndex + '-' + latIndex
 
     // bmap returns point in integer, which makes cell width unstable.
     // So we have to use right bottom point.
@@ -100,7 +94,7 @@ function draw(time, rawData, type) {
     ]));
   }
 
-  option = {
+  const option = {
     tooltip: {},
     visualMap: {
       type: 'piecewise',
@@ -271,8 +265,29 @@ function draw(time, rawData, type) {
   if (option && typeof option === "object") {
     myChart.setOption(option, true);
 
+    myChart.on('click', function (params) {
+      console.log(params)
+      drawDoughnutChart(params.data.slice(3))
+    })
+
     const map = myChart.getModel().getComponent('bmap').getBMap();
     map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT}));    
     map.addControl(new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_RIGHT}));    
   }
+}
+
+
+function drawDoughnutChart(data) {
+  const ctx = 'draw-area-right'
+  const myChart = new Chart(ctx,{
+    type: 'doughnut',
+    data: {
+      labels: ['色情广告', '发票办证', '银行相关', '房产交易', '其他'],
+      datasets: [{
+        data: data,
+        backgroundColor: COLORS2.slice(1),
+      }]
+    },
+    // options: options
+  });
 }
